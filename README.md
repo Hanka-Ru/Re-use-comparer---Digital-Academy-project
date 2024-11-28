@@ -1,4 +1,4 @@
-# **Re-use cloth**
+# **Re-use clothes**
 
 ## Czechitas Digital Academy Data project, Autumn 2024
 
