@@ -1,0 +1,41 @@
+CREATE OR REPLACE TABLE "DIMENSION_ALL" AS 
+
+WITH CTE AS (
+SELECT DISTINCT CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY
+    , "brand_name"
+    , "condition"
+    , "size"
+    , "category"
+    , "product"
+    , "e_shop"
+FROM "ZALANDO_ALL"
+UNION ALL
+SELECT DISTINCT CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY
+    , "brand_name"
+    , "condition"
+    , "size"
+    , "category"
+    , "product"
+    , "e_shop"
+FROM "VINTED_ALL"
+UNION ALL
+SELECT DISTINCT CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY
+    , "brand_name"
+    , "condition"
+    , "size"
+    , "category"
+    , "product"
+    , "e_shop"
+FROM "BAZOS_ALL"
+UNION ALL
+SELECT DISTINCT CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY
+    , "brand_name"
+    , "condition"
+    , "size"
+    , "category"
+    , "product"
+    , "e_shop"
+FROM "ZOOT_ALL")
+SELECT DISTINCT *
+FROM CTE
+;
