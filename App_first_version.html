@@ -1,0 +1,273 @@
+'''First and unused script for the app'''
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Porovnání oblečení z druhé ruky vs. nové / Výběr Produktu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: radial-gradient(circle, #e5a51b, #18b4a4, #18b4a4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(24, 180, 164, 0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 300px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 80px; /* Zvýšené odsazení formuláře od vrchní části stránky */
+            margin-bottom: 40px; /* Menší mezera pod formulářem */
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 30px rgba(229, 165, 27, 0.4);
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #18b4a4;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .dropdown-container {
+            width: 100%;
+            position: relative;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #18b4a4;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #18b4a4;
+            background-color: #fff;
+            color: #333;
+            appearance: none;
+            cursor: pointer;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #e5a51b;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #e5a51b;
+            box-shadow: 0 0 5px rgba(229, 165, 27, 0.5);
+        }
+
+        .dropdown-container:after {
+            content: '▼';
+            font-size: 14px;
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: #666;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-run {
+            background-color: #18b4a4;
+            color: white;
+        }
+
+        .btn-run:hover {
+            background-color: #16a193;
+        }
+
+        .btn-report {
+            background-color: #e5a51b;
+            color: white;
+        }
+
+        .btn-report:hover {
+            background-color: #d49417;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        /* Embedded Tableau Styling */
+        .tableau-container {
+            margin-top: 20px; /* Menší mezera mezi formulářem a tabulkou */
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tableau-container h2 {
+            color: #18b4a4;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 800px;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Výběr Produktu</h1>
+
+    <div class="dropdown-container">
+        <label for="category">Kategorie</label>
+        <select id="category">
+            <option value="" disabled selected>Vyberte kategorii</option>
+            <option value="kalhoty">Kalhoty</option>
+            <option value="tricka">Trička</option>
+            <option value="boty">Boty</option>
+        </select>
+    </div>
+
+    <div class="dropdown-container">
+        <label for="brand">Značka</label>
+        <select id="brand">
+            <option value="" disabled selected>Vyberte značku</option>
+            <option value="mango">Mango</option>
+            <option value="zara">Zara</option>
+            <option value="nike">Nike</option>
+        </select>
+    </div>
+
+    <div class="button-container">
+        <button class="btn-run" onclick="spustit()">Spustit</button>
+        <button class="btn-report" onclick="prejitNaReport()">Přejít na report</button>
+    </div>
+</div>
+
+
+<!-- Embedded Tableau Public Visualization -->
+
+<div class="tableau-container">
+    <h2 style="text-align: center;">
+        Chceš zjistit, zda se vyplatí nakupovat re-use oblečení? Koukni sem 
+        <i class="fas fa-arrow-down" style="font-size: 3em; color: orange;"></i>
+    </h2>
+    <iframe 
+        src="https://public.tableau.com/views/your-workbook-name/your-sheet-name?:embed=y&:display_count=yes&:toolbar=no" 
+        sandbox="allow-same-origin allow-scripts allow-popups"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<script>
+    const keboolaUrl = "https://queue.north-europe.azure.keboola.com/jobs";
+    const keboolaToken = "21905-4947613-bTtQu67dVYwGY4xWTGp4uZHXKe9EoYmUtC5SnIJ6";
+
+    const flowConfigs = ["94507398"]
+
+    async function spustit() {
+        const category = document.getElementById('category').value;
+        const brand = document.getElementById('brand').value;
+
+        if (product && brand) {
+            for (let componentConfig in componentConfigs) {
+                const response = await fetch(keboolaUrl, {
+                    method: "POST",
+                    headers: {
+                        "X-StorageApi-Token": keboolaToken,
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ 
+                        mode: "run",
+                        component: "orchestrations-v2",
+                        config: componentConfig
+                    })
+                })
+                const result = await response.json();
+
+                const jobId = result.id;
+                console.log(jobId)
+                
+                const interval = setInterval(async() => {
+                    // zavolat funkci pro zjisteni stavu jobu
+                    const jobResponse = await fetch(keboolaUrl + "/" + jobId, {
+                        headers: {
+                            "X-StorageApi-Token": keboolaToken,
+                            "Content-Type": "application/json"
+                        }
+                    })
+                    const jobResult = await jobResponse.json();
+                    const jobStatus = jobResult.status;
+                    
+                    console.log(jobStatus)
+                    if (jobStatus === "success" || jobStatus === "error" || jobStatus === "terminated" || jobStatus === "cancelled") {
+                        clearInterval(interval);
+                    }
+                }, 2000)
+                // zpracovat data a vykreslit informace
+            }
+
+            alert('Vybrali jste ' + category + ' a ' + brand);
+        } else {
+            alert('Prosím, vyberte kategorii i značku.');
+        }
+    }
+
+    function prejitNaReport() {
+        const category = document.getElementById('category').value;
+        const brand = document.getElementById('brand').value;
+
+        if (category && brand) {
+            window.location.href = `report.html?category=${category}&brand=${brand}`;
+        } else {
+            alert('Prosím, vyberte kategorii i značku.');
+        }
+    }
+</script>
+
+</body>
+</html>
