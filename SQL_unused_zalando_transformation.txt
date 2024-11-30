@@ -1,0 +1,41 @@
+'''Original script for Zoot transformation, unpivoting the columns
+unused at last as for the dinamicla columns'''
+
+CREATE OR REPLACE TABLE "Zalando_adidas_tricko_muzi_vystup" AS 
+WITH Data_prep AS (
+SELECT UUID_STRING() AS "database_id"
+    , "name"
+    , "url"
+    , "brand_name"
+    , CAST("price_current" AS FLOAT) AS "price_current"
+    , CASE WHEN "sizes_0_stockStatus" != 'OUT OF STOCK' THEN "sizes_0_size" ELSE NULL END AS "sizes_0_size"
+    , CASE WHEN "sizes_1_stockStatus" != 'OUT OF STOCK' THEN "sizes_1_size" ELSE NULL END AS "sizes_1_size"
+    , CASE WHEN "sizes_2_stockStatus" != 'OUT OF STOCK' THEN "sizes_2_size" ELSE NULL END AS "sizes_2_size"
+    , CASE WHEN "sizes_3_stockStatus" != 'OUT OF STOCK' THEN "sizes_3_size" ELSE NULL END AS "sizes_3_size"
+    , CASE WHEN "sizes_4_stockStatus" != 'OUT OF STOCK' THEN "sizes_4_size" ELSE NULL END AS "sizes_4_size"
+    , CASE WHEN "sizes_5_stockStatus" != 'OUT OF STOCK' THEN "sizes_5_size" ELSE NULL END AS "sizes_5_size"
+    , CASE WHEN "sizes_6_stockStatus" != 'OUT OF STOCK' THEN "sizes_6_size" ELSE NULL END AS "sizes_6_size"
+    , CASE WHEN "sizes_7_stockStatus" != 'OUT OF STOCK' THEN "sizes_7_size" ELSE NULL END AS "sizes_7_size"
+    , CASE WHEN "sizes_8_stockStatus" != 'OUT OF STOCK' THEN "sizes_8_size" ELSE NULL END AS "sizes_8_size"
+    , CASE WHEN "sizes_9_stockStatus" != 'OUT OF STOCK' THEN "sizes_9_size" ELSE NULL END AS "sizes_9_size"
+    , CASE WHEN "sizes_10_stockStatus" != 'OUT OF STOCK' THEN "sizes_10_size" ELSE NULL END AS "sizes_10_size"
+FROM "Zalando_adidas_tricko_muzi"
+)
+
+SELECT "database_id"
+    , "name"
+    , "url"
+    , "brand_name"
+    , CAST("price_current" AS FLOAT) AS "price_current"
+    , size AS "size"
+    , 'Nové s visačkou' AS "stav"
+    , 'Muži' AS "category"
+    --, size_nr
+FROM Data_prep
+UNPIVOT (
+    size FOR size_nr IN ("sizes_0_size", "sizes_1_size", "sizes_2_size",  "sizes_3_size", 
+ "sizes_4_size", "sizes_5_size", "sizes_6_size", "sizes_7_size", "sizes_8_size", "sizes_9_size", "sizes_10_size"
+ )
+    )
+WHERE size != ''
+ORDER BY "database_id";
