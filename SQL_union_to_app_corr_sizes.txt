@@ -1,0 +1,71 @@
+--Unification of Sizes
+
+CREATE OR REPLACE TABLE "UNION_TO_APP_CORR_SIZES" AS
+
+SELECT 
+    "database_id", 
+    "brand", 
+    "price", 
+    "name", 
+    "url", 
+    "condition", 
+    CASE 
+        WHEN "size_original" = 'XXXL / 46 / 18' THEN '46'
+        WHEN "size_original" = 'XXS / 32 / 4' THEN '32'
+        WHEN "size_original" = 'XXS' THEN '32'
+        WHEN "size_original" = 'XXL / 44 / 16' THEN '44'
+        WHEN "size_original" = 'XXL' THEN '44'
+        WHEN "size_original" = 'XS / 34 / 6' THEN '34'
+        WHEN "size_original" = 'XS' THEN '34'
+        WHEN "size_original" = 'XL / 42 / 14' THEN '42'
+        WHEN "size_original" = 'XL' THEN '42'
+        WHEN "size_original" = 'S / 36 / 8' THEN '36'
+        WHEN "size_original" = 'S' THEN '36'
+        WHEN "size_original" = 'M / 38 / 10' THEN '38'
+        WHEN "size_original" = 'M' THEN '38'
+        WHEN "size_original" = 'L / 40 / 12' THEN '40'
+        WHEN "size_original" = 'L' THEN '40'
+        WHEN "size_original" = '9y' THEN '134–139'
+        WHEN "size_original" = '98–103 cm / 3 roky' THEN '98–103'
+        WHEN "size_original" = '92–97 cm / 24–36 měsíců' THEN '92–97'
+        WHEN "size_original" = '8y' THEN '128–133'
+        WHEN "size_original" = '86–91 cm / 18–24 měsíců' THEN '86–91'
+        WHEN "size_original" = '80–85 cm / 12–18 měsíců' THEN '80–85'
+        WHEN "size_original" = '7y' THEN '122–127'
+        WHEN "size_original" = '74–79 cm / 9–12 měsíců' THEN '74–79'
+        WHEN "size_original" = '6y' THEN '116–121'
+        WHEN "size_original" = '62–67 cm / 3–6 měsíců' THEN '62–67'
+        WHEN "size_original" = '5y' THEN '110–115'
+        WHEN "size_original" = '56–61 cm / 1–3 měsíce' THEN '56–61'
+        WHEN "size_original" = '5-6y' THEN '112-116'
+        WHEN "size_original" = '4XL' THEN '60'
+        WHEN "size_original" = '4-5y' THEN '105-110'
+        WHEN "size_original" = '3-4y' THEN '99-104'
+        WHEN "size_original" = '2XL' THEN '56'
+        WHEN "size_original" = '1XL' THEN '54'
+        WHEN "size_original" = '170–175 cm / 15 let' THEN '170–175'
+        WHEN "size_original" = '164–169 cm / 14 let' THEN '164–169'
+        WHEN "size_original" = '158–163 cm / 13 let' THEN '158–163'
+        WHEN "size_original" = '158/164' THEN '158-164'
+        WHEN "size_original" = '152–157 cm / 12 let' THEN '152–157'
+        WHEN "size_original" = '146–151 cm / 11 let' THEN '146–151'
+        WHEN "size_original" = '146/152' THEN '146-152'
+        WHEN "size_original" = '140–145 cm / 10 let' THEN '140–145'
+        WHEN "size_original" = '134–139 cm / 9 let' THEN '134–139'
+        WHEN "size_original" = '134/140' THEN '134-140'
+        WHEN "size_original" = '13-14y' THEN '159-164'
+        WHEN "size_original" = '128–133 cm / 8 let' THEN '128–133'
+        WHEN "size_original" = '122–127 cm / 7 let' THEN '122–127'
+        WHEN "size_original" = '122/128' THEN '122-128'
+        WHEN "size_original" = '116–121 cm / 6 let' THEN '116–121'
+        WHEN "size_original" = '110/116' THEN '110-116'
+        WHEN "size_original" = '11-12y' THEN '147-152'
+        WHEN "size_original" = '10y' THEN '140–145'
+        WHEN "size_original" = '110–115 cm / 5 let' THEN '110–115'
+        WHEN "size_original" = '104–109 cm / 4 roky' THEN '104–109'
+        ELSE "size_original"
+    END AS "size",
+    "gender", 
+    "product", 
+    "e_shop"
+FROM "UNION_TO_APP";
