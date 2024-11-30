@@ -1,0 +1,49 @@
+CREATE OR REPLACE TABLE "ZALANDO_ALL" AS 
+
+SELECT 
+  CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  *
+FROM "Zalando_mango_kalhoty_deti_vystup"
+UNION ALL
+SELECT 
+  CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  *
+FROM "Zalando_mango_kalhoty_muzi_vystup"
+UNION ALL
+SELECT 
+  CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  *
+FROM "Zalando_mango_kalhoty_zeny_vystup"
+;
+
+CREATE OR REPLACE TABLE "VINTED_ALL" AS 
+
+SELECT 
+  CONCAT("brand_title",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  "brand_title" AS "brand_name", "favourite_count", "product_id", "price", "size", "condition", "name", "url", "category", "product", "e_shop", "database_id"
+FROM "vinted_mango_kalhoty_deti_vystup"
+UNION ALL
+SELECT 
+  CONCAT("brand_title",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  "brand_title" AS "brand_name", "favourite_count", "product_id", "price", "size", "condition", "name", "url", "category", "product", "e_shop", "database_id"
+FROM "vinted_mango_kalhoty_muzi_vystup"
+UNION ALL
+SELECT 
+  CONCAT("brand_title",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  "brand_title" AS "brand_name", "favourite_count", "product_id", "price", "size", "condition", "name", "url", "category", "product", "e_shop", "database_id"
+FROM "vinted_mango_kalhoty_zeny_vystup"
+;
+
+CREATE OR REPLACE TABLE "BAZOS_ALL" AS 
+SELECT 
+  CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  *
+FROM "bazos_mango_kalhoty_vse_vystup"
+;
+
+CREATE OR REPLACE TABLE "ZOOT_ALL" AS 
+SELECT 
+  CONCAT("brand_name",'_', "condition", '_', "size", '_', "category", '_', "product", '_', "e_shop") AS DIMENSION_KEY,
+  *
+FROM "Zoot_Mango_kalhoty_vystup"
+;
