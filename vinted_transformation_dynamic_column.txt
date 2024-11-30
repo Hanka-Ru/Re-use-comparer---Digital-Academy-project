@@ -1,5 +1,6 @@
 '''Vinted Apify scraper dataset - Keboola transformation, solving the dynamical columns
-with PL origin, which exist only if the product is from Poland'''
+with PL origin, which exist only if the product is from Poland
+UNUSED at last'''
 
 import pandas as pd
 import uuid
