@@ -66,5 +66,5 @@ final_columns = [
 existing_columns = [col for col in final_columns if col in df.columns]
 df = df[existing_columns]
 
-# Final outpur
+# Final output
 df.to_csv(output_path, index=False)
