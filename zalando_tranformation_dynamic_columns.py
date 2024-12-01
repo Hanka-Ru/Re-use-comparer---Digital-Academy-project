@@ -30,7 +30,7 @@ with open(input_file, mode='r', encoding='utf-8') as infile, open(output_file, m
             size = str(row.get(size_column, "")).strip()  # Získání velikosti a odstranění případných bílých znaků
             stock_status = row.get(stock_status_column, "").strip().upper()  # Kontrola dostupnosti
 
-            # Condition for available size only
+            # Condition for available sizes only
             if size and stock_status != 'OUT_OF_STOCK':
                 # Vytvoření jedinečného ID pro kombinaci produktu a velikosti
                 database_id = str(uuid.uuid4())
