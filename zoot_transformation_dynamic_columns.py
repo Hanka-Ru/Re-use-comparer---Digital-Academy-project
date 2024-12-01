@@ -1,16 +1,14 @@
-'''Zoot trasnformation soling the dynamical columns with sizes"
+'''Zoot trasnformation solving the dynamical columns with sizes"
 
 import pandas as pd
 import uuid
 
-# Paths defined by Keboola for input and output
 input_path = 'in/tables/Zoot_Mango_kalhoty.csv'
 output_path = 'out/tables/Zoot_Mango_kalhoty_vystup.csv'
 
-# Load the dataset
 dataset = pd.read_csv(input_path)
 
-# Define constants for new columns
+# constants
 brand_name = 'Mango'
 condition = 'Nový s visačkou'
 category = 'Ženy'
@@ -26,7 +24,7 @@ df_size = dataset.melt(id_vars=['name', 'url', 'currentBestPrice_value'],
                        var_name='size_type',
                        value_name='size')
 
-# Drop rows where size is NaN (if any)
+# Drop rows - size is NaN
 df_size = df_size.dropna(subset=['size'])
 
 # Add the new columns with fixed values
@@ -43,10 +41,10 @@ df_size['database_id'] = df_size['url'].map(url_to_uuid)
 # Rename 'currentBestPrice_value' to 'price'
 df_size = df_size.rename(columns={'currentBestPrice_value': 'price'})
 
-# Select and rename final columns as specified
+# Select and rename final columns
 df_final = df_size[['database_id', 'name', 'url', 'brand_name', 'price', 'condition', 'category', 'size', 'product', 'e_shop']]
 
-# Set the data types for each column
+# Set the data types
 df_final = df_final.astype({
     'database_id': 'string',
     'name': 'string',
@@ -60,8 +58,8 @@ df_final = df_final.astype({
     'e_shop': 'string'
 })
 
-# Drop duplicate rows based on relevant columns (excluding 'database_id' to avoid conflicts)
+# Drop duplicate rows based on relevant columns
 df_final = df_final.drop_duplicates(subset=['database_id', 'name', 'url', 'brand_name', 'price', 'condition', 'category', 'size', 'product', 'e_shop'])
 
-# Save the processed DataFrame to the output path with a comma delimiter
+# Final output
 df_final.to_csv(output_path, index=False)
