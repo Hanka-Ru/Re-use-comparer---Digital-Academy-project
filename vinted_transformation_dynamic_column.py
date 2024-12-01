@@ -5,11 +5,10 @@ UNUSED at last due to Keboola limitations'''
 import pandas as pd
 import uuid
 
-# File paths
 input_path = 'in/tables/Vinted_mango_kalhoty_zeny.csv'
 output_path = 'out/tables/Vinted_Mango_kalhoty_zeny_test_PL_kod.csv'
 
-# Define the expected data types for each column
+# Define the expected data types
 dtype = {
 	"brand_name": str,
 	"favourite_count": str,
@@ -20,10 +19,9 @@ dtype = {
 	"url": str
 }
 
-# Reading the data from the input CSV file with specified dtypes
 df = pd.read_csv(input_path, dtype=dtype)
 
-# Rename columns to match specified output format
+# Rename columns
 df = df.rename(columns={
 	"brand_name": "brand_title",
 	"id": "product_id",
@@ -43,7 +41,7 @@ else:
 # Drop "total_item_price" and "conversion_seller_price" as they're now redundant
 df = df.drop(columns=["total_item_price", "total_item_price_amount"], errors='ignore')
 
-# Adding new columns with specified default values
+# Adding new columns
 df['category'] = 'Ženy'
 df['product'] = 'Kalhoty'
 df['e_shop'] = 'Vinted'
@@ -68,5 +66,5 @@ final_columns = [
 existing_columns = [col for col in final_columns if col in df.columns]
 df = df[existing_columns]
 
-# Saving the updated DataFrame to the output CSV file
+# Final outpur
 df.to_csv(output_path, index=False)
