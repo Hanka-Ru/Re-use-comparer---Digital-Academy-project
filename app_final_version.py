@@ -122,7 +122,7 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-# Add the link below your header or any other section
+# Add the link the header
 st.markdown(
     f"""
     <style>
@@ -178,7 +178,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-# Load the dataset
 data = load_data()
 
 # Product, Brand, Gender filters with green bold labels
