@@ -1,5 +1,5 @@
 '''Original script for Zoot transformation, unpivoting the columns
-unused at last as for the dinamicla columns'''
+unused at last as for the dynamical columns'''
 
 CREATE OR REPLACE TABLE "Zalando_adidas_tricko_muzi_vystup" AS 
 WITH Data_prep AS (
